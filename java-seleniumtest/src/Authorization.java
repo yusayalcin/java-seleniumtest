@@ -27,7 +27,6 @@ public class Authorization {
 		Thread.sleep(5000);
 
 		boolean doctor = (boolean) (driver.findElements(By.className("doctor-list")).size() != 0);
-		System.out.println(doctor);
 		assertTrue("true", doctor);
 	}
 
@@ -68,6 +67,32 @@ public class Authorization {
 
 		boolean meeting = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
 		assertFalse("false", meeting);
+	}
+
+	@Test // Reservations should not be visible for admin
+	public void checkAdminReservation() throws InterruptedException {
+		driver();
+		adminLogin();
+		Thread.sleep(5000);
+
+		driver.navigate().to("http://localhost:3000/reservations");
+		Thread.sleep(5000);
+
+		boolean reservations = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
+		assertFalse("false", reservations);
+	}
+
+	@Test // Forum should not be visible for admin
+	public void checkAdminForum() throws InterruptedException {
+		driver();
+		adminLogin();
+		Thread.sleep(5000);
+
+		driver.navigate().to("http://localhost:3000/forum");
+		Thread.sleep(5000);
+
+		boolean forum = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
+		assertFalse("false", forum);
 	}
 
 	@Test // Admin page should not be visible for patients
