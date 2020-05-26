@@ -15,7 +15,7 @@ public class SignUp {
 	public void driver() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"/home/yusayalcin/git/java-seleniumtest/java-seleniumtest/lib/chromedriver");
+				"../java-seleniumtest/lib/chromedriver");
 		driver = new ChromeDriver();
 		driver.get(baseUrl);
 	}
