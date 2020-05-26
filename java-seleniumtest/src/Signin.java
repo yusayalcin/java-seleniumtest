@@ -1,3 +1,4 @@
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -13,7 +14,7 @@ public class Signin {
 
 	public void driver() {
 		System.setProperty("webdriver.chrome.driver",
-				"/home/yusayalcin/eclipse-workspace/FrontEndTest/lib/chromedriver");
+				"/home/yusayalcin/git/java-seleniumtest/java-seleniumtest/lib/chromedriver");
 		driver = new ChromeDriver();
 		driver.get(baseUrl);
 	}
@@ -34,7 +35,6 @@ public class Signin {
 		String expectedUrl = driver.getCurrentUrl();
 
 		Assert.assertEquals(expectedUrl, actualUrl);
-		System.out.println(expectedUrl);
 	}
 
 	@Test // Can't login
