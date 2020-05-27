@@ -230,7 +230,7 @@ public class Authorization {
 		WebElement password = driver.findElement(By.name("password"));
 		WebElement login = driver.findElement(By.xpath("//button[text()='Submit']"));
 		username.sendKeys("bk260597@gmail.com");
-		password.sendKeys("Bk1234.");
+		password.sendKeys("Bk*1234.");
 		login.click();
 	}
 }
