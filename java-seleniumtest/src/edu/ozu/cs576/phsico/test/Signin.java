@@ -1,22 +1,31 @@
-package edu.ozu.cs576.phsico.tesst;
+package edu.ozu.cs576.phsico.test;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ById;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
-
-public class Signin {
+/***
+ * 
+ * @author Yusa Yalcin
+ *
+ */
+public class Signin  implements ITest {
 	public static WebDriver driver;
-	public static String baseUrl = "http://localhost:3000/sign-in";
+	public static String baseUrl = Configuration.URL_BASE;
 
+	@Deprecated
 	public void driver() {
 		System.setProperty("webdriver.chrome.driver",
-				"/home/yusayalcin/eclipse-workspace/FrontEndTest/lib/chromedriver");
+				Configuration.CHROME_DRIVER);
 		driver = new ChromeDriver();
 		driver.get(baseUrl);
+		 
+		
 	}
 
 	@Test // Login to user and direct to user profile
@@ -25,50 +34,49 @@ public class Signin {
 		WebElement username = driver.findElement(By.name("email"));
 		WebElement password = driver.findElement(By.name("password"));
 		WebElement login = driver.findElement(By.xpath("//button[text()='Submit']"));
-		username.sendKeys("burak.kara@ozu.edu.tr");
-		password.sendKeys("111111");
+		username.sendKeys("arzubt@gmail.com");
+		password.sendKeys("Ozu_2020");
 		login.click();
-		String actualUrl = "http://localhost:3000/profile";
+		String actualUrl = Configuration.URL_PROFILE;
 		Thread.sleep(5000);
 
-		driver.navigate().to("http://localhost:3000/profile");
+		driver.navigate().to(actualUrl);
 		String expectedUrl = driver.getCurrentUrl();
 
 		Assert.assertEquals(expectedUrl, actualUrl);
-		System.out.println(expectedUrl);
 	}
 
-	@Test // Can't login
+	//@Test // Can't login
 	public void loginWithWrongEmail() {
 		driver();
-		WebElement username = driver.findElement(By.name("email"));
+		WebElement username = driver.findElement(By.id("email"));
 		WebElement password = driver.findElement(By.name("password"));
 		WebElement login = driver.findElement(By.xpath("//button[text()='Submit']"));
 		username.sendKeys("burak@ozu.edu.tr");
 		password.sendKeys("111111");
 		login.click();
-		String actualUrl = "http://localhost:3000";
+		String actualUrl = Configuration.URL_MAIN;
 
 		String expectedUrl = driver.getCurrentUrl();
 		assertThat(expectedUrl, not(actualUrl));
 	}
 
-	@Test // Can't login
+	//@Test // Can't login
 	public void loginWithWrongPassword() {
 		driver();
-		WebElement username = driver.findElement(By.name("email"));
+		WebElement username = driver.findElement(By.id("email"));
 		WebElement password = driver.findElement(By.name("password"));
 		WebElement login = driver.findElement(By.xpath("//button[text()='Submit']"));
 		username.sendKeys("burak.kara@ozu.edu.tr");
 		password.sendKeys("11111");
 		login.click();
-		String actualUrl = "http://localhost:3000";
+		String actualUrl = Configuration.URL_MAIN;
 
 		String expectedUrl = driver.getCurrentUrl();
 		assertThat(expectedUrl, not(actualUrl));
 	}
 
-	@Test // Can't login
+	//@Test // Can't login
 	public void loginWithWrongPasswordAndEmail() {
 		driver();
 		WebElement username = driver.findElement(By.name("email"));
@@ -77,9 +85,53 @@ public class Signin {
 		username.sendKeys("burak@ozu.edu.tr");
 		password.sendKeys("1111");
 		login.click();
-		String actualUrl = "http://localhost:3000";
+		String actualUrl = Configuration.URL_MAIN;
 
 		String expectedUrl = driver.getCurrentUrl();
 		assertThat(expectedUrl, not(actualUrl));
 	}
+
+	@Override
+	public void run(WebDriver _driver) throws RuntimeException {
+		driver = _driver;
+		System.out.println("Sign In senaryolari basladi");
+		try {
+			loginWithWrongPasswordAndEmail();
+		} catch (Exception e) {
+			
+		}
+		try {
+			loginWithWrongPassword();
+		} catch (Exception e) {
+			
+		}
+		
+		try {
+			loginWithWrongPassword();
+		} catch (Exception e) {
+			
+		}
+		try {
+			loginWithWrongPassword();
+		} catch (Exception e) {
+			
+		}
+		try {
+			loginWithWrongEmail();
+		} catch (Exception e) {
+			
+		}
+		try {
+			login();
+		} catch (Exception e) {
+			
+		}
+	
+	}
+	
+	
+	public WebDriver getDriver() {
+		return this.driver;
+	}
+	
 }

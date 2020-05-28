@@ -1,4 +1,4 @@
-package edu.ozu.cs576.phsico.tesst;
+package edu.ozu.cs576.phsico.test;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
@@ -8,18 +8,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-public class SignUp {
+/***
+ * 
+ * @author Yusa Yalcin
+ *
+ */
+public class SignUp  implements ITest {
 	public static WebDriver driver;
 	public static String baseUrl = "http://localhost:3000/sign-up";
 
 	public void driver() {
 
 		System.setProperty("webdriver.chrome.driver",
-				"/home/yusayalcin/eclipse-workspace/FrontEndTest/lib/chromedriver");
+				"/home/yusayalcin/git/java-seleniumtest/java-seleniumtest/lib/chromedriver");
 		driver = new ChromeDriver();
 		driver.get(baseUrl);
 	}
+
 	@Test // Can't signup because of existing email
 	public void signUpWithExistingEmail() throws InterruptedException {
 		driver();
@@ -35,12 +40,13 @@ public class SignUp {
 
 		name.sendKeys("yuşa");
 		surname.sendKeys("yalçın");
-		 username.sendKeys("yusayalcin");
+		username.sendKeys("yusayalcin");
 		phone.sendKeys("111111");
 		email.sendKeys("burak.kara@ozu.edu.tr");
 		passwordOne.sendKeys("123.qQ");
 		passwordTwo.sendKeys("123.qQ");
 		birthday.sendKeys("1990-01-01");
+		Thread.sleep(5000);
 
 		login.click();
 		String actualUrl = "http://localhost:3000/";
@@ -48,17 +54,14 @@ public class SignUp {
 
 		String expectedUrl = driver.getCurrentUrl();
 
-		Assert.assertEquals(expectedUrl, actualUrl);
-		System.out.println(expectedUrl);
+		assertThat(expectedUrl, not(actualUrl));
 	}
 
-/*
 	@Test // Can't signup because username is missing
-	public void signUpWithoutUsername() {
+	public void signUpWithoutUsername() throws InterruptedException {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
 		WebElement surname = driver.findElement(By.name("surname"));
-		WebElement username = driver.findElement(By.name("username"));
 		WebElement phone = driver.findElement(By.name("phone"));
 		WebElement email = driver.findElement(By.name("email"));
 		WebElement passwordOne = driver.findElement(By.name("passwordOne"));
@@ -68,12 +71,12 @@ public class SignUp {
 
 		name.sendKeys("yuşa");
 		surname.sendKeys("yalçın");
-		// username.sendKeys("yusayalcin");
 		phone.sendKeys("111111");
 		email.sendKeys("yusa.yalcin@ozu.edu.tr");
 		passwordOne.sendKeys("123.qQ");
 		passwordTwo.sendKeys("123.qQ");
 		birthday.sendKeys("1990-01-01");
+		Thread.sleep(5000);
 
 		login.click();
 		String actualUrl = "http://localhost:3000";
@@ -84,7 +87,7 @@ public class SignUp {
 	}
 
 	@Test // Can't signup because password is missing
-	public void signUpWithoutPasswordOne() {
+	public void signUpWithoutPasswordOne() throws InterruptedException {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
 		WebElement surname = driver.findElement(By.name("surname"));
@@ -102,6 +105,7 @@ public class SignUp {
 		email.sendKeys("yusa.yalcin@ozu.edu.tr");
 		passwordTwo.sendKeys("123.qQ");
 		birthday.sendKeys("1990-01-01");
+		Thread.sleep(5000);
 
 		login.click();
 		String actualUrl = "http://localhost:3000";
@@ -112,7 +116,7 @@ public class SignUp {
 	}
 
 	@Test // Can't signup because email is missing
-	public void signUpWithoutEmail() {
+	public void signUpWithoutEmail() throws InterruptedException {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
 		WebElement surname = driver.findElement(By.name("surname"));
@@ -130,6 +134,7 @@ public class SignUp {
 		passwordOne.sendKeys("123.qQ");
 		passwordTwo.sendKeys("123.qQ");
 		birthday.sendKeys("1990-01-01");
+		Thread.sleep(5000);
 
 		login.click();
 		String actualUrl = "http://localhost:3000";
@@ -140,7 +145,7 @@ public class SignUp {
 	}
 
 	@Test // Can't signup because birthday is missing
-	public void signUpWithoutBirthday() {
+	public void signUpWithoutBirthday() throws InterruptedException {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
 		WebElement surname = driver.findElement(By.name("surname"));
@@ -149,7 +154,6 @@ public class SignUp {
 		WebElement email = driver.findElement(By.name("email"));
 		WebElement passwordOne = driver.findElement(By.name("passwordOne"));
 		WebElement passwordTwo = driver.findElement(By.name("passwordTwo"));
-		// WebElement birthday = driver.findElement(By.name("birthday"));
 		WebElement login = driver.findElement(By.xpath("//button[text()='Sign Up']"));
 
 		name.sendKeys("yuşa");
@@ -159,16 +163,17 @@ public class SignUp {
 		email.sendKeys("yusargrge.yalcin@ozu.edu.tr");
 		passwordOne.sendKeys("123.qQ");
 		passwordTwo.sendKeys("123.qQ");
-		// birthday.sendKeys("1990-01-01");
+		Thread.sleep(5000);
+
 		login.click();
 		String actualUrl = "http://localhost:3000";
 
 		String expectedUrl = driver.getCurrentUrl();
 
 		assertThat(expectedUrl, not(actualUrl));
-	}*/
+	}
 
-/*	@Test // Can't signup because user is younger than 18
+	@Test // Can't signup because user is younger than 18
 	public void signUpYoungerThan18() {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
@@ -228,7 +233,7 @@ public class SignUp {
 		assertThat(expectedUrl, not(actualUrl));
 	}
 
-	@Test
+	@Test // in each execution new mail should be entered
 	public void signUp() throws InterruptedException {
 		driver();
 		WebElement name = driver.findElement(By.name("name"));
@@ -245,7 +250,7 @@ public class SignUp {
 		surname.sendKeys("yalçın");
 		username.sendKeys("yusayalcin");
 		phone.sendKeys("56459");
-		email.sendKeys("yusdfsdasddfsa@ozu.edu.tr");
+		email.sendKeys("yusdfsa@ozu.edu.tr");
 		passwordOne.sendKeys("123.qQqq");
 		passwordTwo.sendKeys("123.qQqq");
 		birthday.sendKeys("1990-01-01");
@@ -257,6 +262,13 @@ public class SignUp {
 		String expectedUrl = driver.getCurrentUrl();
 
 		Assert.assertEquals(expectedUrl, actualUrl);
-		System.out.println(expectedUrl);
-	}*/
+	}
+
+	@Override
+	public void run(WebDriver driver) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

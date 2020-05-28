@@ -1,4 +1,5 @@
-package edu.ozu.cs576.phsico.tesst;
+package edu.ozu.cs576.phsico.test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
@@ -6,15 +7,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-public class Authorization {
+/**
+ * 
+ * @author Yusa Yalcin
+ *
+ */
+public class Authorization  implements ITest {
 	public static WebDriver driver;
 	public static String baseUrl = "http://localhost:3000/sign-in";
 
 	public void driver() {
 		System.setProperty("webdriver.chrome.driver",
-				"/home/yusayalcin/eclipse-workspace/FrontEndTest/lib/chromedriver");
-		driver = new ChromeDriver();
+				Configuration.CHROME_DRIVER);
+				driver = new ChromeDriver();
 		driver.get(baseUrl);
 	}
 
@@ -24,11 +29,10 @@ public class Authorization {
 		patientLogin();
 		Thread.sleep(5000);
 
-		driver.navigate().to("http://localhost:3000/doctors");
+		driver.navigate().to(Configuration.URL_DR);
 		Thread.sleep(5000);
 
 		boolean doctor = (boolean) (driver.findElements(By.className("doctor-list")).size() != 0);
-		System.out.println(doctor);
 		assertTrue("true", doctor);
 	}
 
@@ -69,6 +73,32 @@ public class Authorization {
 
 		boolean meeting = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
 		assertFalse("false", meeting);
+	}
+
+	@Test // Reservations should not be visible for admin
+	public void checkAdminReservation() throws InterruptedException {
+		driver();
+		adminLogin();
+		Thread.sleep(5000);
+
+		driver.navigate().to("http://localhost:3000/reservations");
+		Thread.sleep(5000);
+
+		boolean reservations = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
+		assertFalse("false", reservations);
+	}
+
+	@Test // Forum should not be visible for admin
+	public void checkAdminForum() throws InterruptedException {
+		driver();
+		adminLogin();
+		Thread.sleep(5000);
+
+		driver.navigate().to("http://localhost:3000/forum");
+		Thread.sleep(5000);
+
+		boolean forum = (boolean) (driver.findElements(By.className("meeting-container")).size() != 0);
+		assertFalse("false", forum);
 	}
 
 	@Test // Admin page should not be visible for patients
@@ -208,5 +238,11 @@ public class Authorization {
 		username.sendKeys("bk260597@gmail.com");
 		password.sendKeys("Bk1234.");
 		login.click();
+	}
+
+	@Override
+	public void run(WebDriver driver) {
+		// TODO Auto-generated method stub
+		
 	}
 }
