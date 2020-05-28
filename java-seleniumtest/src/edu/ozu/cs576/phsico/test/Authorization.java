@@ -17,6 +17,7 @@ public class Authorization  implements ITest {
 	public static String baseUrl = "http://localhost:3000/sign-in";
 
 	public void driver() {
+		if (this.driver != null) return;
 		System.setProperty("webdriver.chrome.driver",
 				Configuration.CHROME_DRIVER);
 				driver = new ChromeDriver();

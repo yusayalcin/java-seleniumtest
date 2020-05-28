@@ -13,6 +13,11 @@ public class TestCaseExecutor {
 			MainWebDriver maindriver = new MainWebDriver();
 			t.run(maindriver.driver());
 		}
+
+		maindriver.driver().close();
+		maindriver.driver().quit();
+		
+		
 	}
 
 }

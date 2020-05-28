@@ -20,6 +20,8 @@ public class Signin  implements ITest {
 
 	@Deprecated
 	public void driver() {
+		
+		if (this.driver != null) return;
 		System.setProperty("webdriver.chrome.driver",
 				Configuration.CHROME_DRIVER);
 		driver = new ChromeDriver();
@@ -78,6 +80,7 @@ public class Signin  implements ITest {
 
 	//@Test // Can't login
 	public void loginWithWrongPasswordAndEmail() {
+	
 		driver();
 		WebElement username = driver.findElement(By.name("email"));
 		WebElement password = driver.findElement(By.name("password"));
@@ -94,44 +97,34 @@ public class Signin  implements ITest {
 	@Override
 	public void run(WebDriver _driver) throws RuntimeException {
 		driver = _driver;
-		System.out.println("Sign In senaryolari basladi");
-		try {
-			loginWithWrongPasswordAndEmail();
-		} catch (Exception e) {
-			
-		}
-		try {
-			loginWithWrongPassword();
-		} catch (Exception e) {
-			
-		}
-		
-		try {
-			loginWithWrongPassword();
-		} catch (Exception e) {
-			
-		}
-		try {
-			loginWithWrongPassword();
-		} catch (Exception e) {
-			
-		}
-		try {
-			loginWithWrongEmail();
-		} catch (Exception e) {
-			
-		}
-		try {
-			login();
-		} catch (Exception e) {
-			
-		}
+	
 	
 	}
 	
 	
 	public WebDriver getDriver() {
 		return this.driver;
+	}
+
+	public void asDoctor( ) {
+		WebElement username = driver.findElement(By.name("email"));
+		WebElement password = driver.findElement(By.name("password"));
+		WebElement login = driver.findElement(By.xpath("//button[text()='Submit']"));
+		username.sendKeys("arzubt@gmail.com");
+		password.sendKeys("Ozu_2020");
+		login.click();
+		String actualUrl = Configuration.URL_PROFILE;
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+		driver.navigate().to(actualUrl);
+		String expectedUrl = driver.getCurrentUrl();
+
+		Assert.assertEquals(expectedUrl, actualUrl);
 	}
 	
 }

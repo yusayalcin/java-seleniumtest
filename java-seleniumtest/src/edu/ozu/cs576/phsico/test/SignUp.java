@@ -18,7 +18,7 @@ public class SignUp  implements ITest {
 	public static String baseUrl = "http://localhost:3000/sign-up";
 
 	public void driver() {
-
+		if (this.driver != null) return;
 		System.setProperty("webdriver.chrome.driver",
 				"/home/yusayalcin/git/java-seleniumtest/java-seleniumtest/lib/chromedriver");
 		driver = new ChromeDriver();
