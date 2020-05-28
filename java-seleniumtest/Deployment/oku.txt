@@ -23,4 +23,4 @@ Dizinde olan jar:
 phsicoAutomation.jar
 
 
-
+jar dizini https://github.com/yusayalcin/java-seleniumtest/tree/executor/java-seleniumtest/lib
