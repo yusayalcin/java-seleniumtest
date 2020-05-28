@@ -7,7 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+/***
+ * 
+ * @author Yusa Yalcin
+ *
+ */
 public class SignUp {
 	public static WebDriver driver;
 	public static String baseUrl = "http://localhost:3000/sign-up";
