@@ -1,5 +1,7 @@
 package edu.ozu.cs576.phsico.test;
-
+/****
+ *  Author: Yusa Yalcin
+ */
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Assert;
@@ -118,7 +120,9 @@ public class AdminPages extends Main implements ITest {
 	}
 	@Override
 	public void run(WebDriver driver) {
-		// TODO Auto-generated method stub
+		this.driver = driver;
+		
+		adminLogin() ;
 		
 	}
 }

@@ -1,0 +1,6 @@
+Test Otomasyon calismaya basladi.
+Doctor Test Cases are started.
+Doctor Test Cases are completed.
+User Test Cases are started.
+User Test Cases are completed.
+Admin page test automation
