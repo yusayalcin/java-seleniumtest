@@ -11,8 +11,8 @@ public class Admin implements ITest {
 
 	@Override
 	public void run(WebDriver driver) {
-		// TODO Auto-generated method stub
-		System.out.println("Admin page test automation");
+	
+		System.out.println("Admin page test automation sadece Junit test olarak implemente edilmistir Junit olarak calistirabilirsiniz. ");
 	}
 
 }
