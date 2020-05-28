@@ -1,8 +1,22 @@
 https://youtu.be/4-l5i-OVaZI 
 
 
-Calistirilmasi icin
+Calistirilmasi icin Komut
 
 
 
 java -cp ./lib/phsicoAutomation.jar;./lib/json-20140107.jar;./lib/org.junit_4.13.0.v20200204-1500.jar;./lib/org.hamcrest.core_1.3.0.v20180420-1519;./lib/selenium-server-standalone-3.141.59.jar  edu.ozu.cs576.phsico.test.WinMain >out.txt >err.txt;
+
+
+Public eklenmesi gereken dosyalar 
+
+json-20140107.jar : https://mvnrepository.com/artifact/org.json/json/20140107
+org.hamcrest.core_1.3.0.v20180420-1519.jar : https://download.eclipse.org/oomph/archive/reports-orbit/download.eclipse.org/tools/orbit/downloads/drops/I20191115195054/repository/index/org.hamcrest.core_1.3.0.v20180420-1519.html
+org.junit_4.13.0.v20200204-1500.jar : https://download.eclipse.org/oomph/archive/reports/download.eclipse.org/staging/2020-03/index/org.junit_4.13.0.v20200204-1500.html
+selenium-chrome-driver-2.26.0.jar :http://www.java2s.com/Code/Jar/s/Downloadseleniumchromedriver2260jar.htm
+selenium-server-standalone-3.141.59.jar: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server/3.141.59
+
+
+Dizinde olan jar: 
+
+phsicoAutomation.jar
