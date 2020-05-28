@@ -1,6 +1,6 @@
 Ornek calisan videomuz:
 
-https://youtu.be/4-l5i-OVaZI 
+https://www.youtube.com/watch?v=4-l5i-OVaZI&feature=youtu.be
 
 
 Calistirilmasi icin Komut
@@ -20,5 +20,7 @@ selenium-server-standalone-3.141.59.jar: https://mvnrepository.com/artifact/org.
 
 
 Dizinde olan jar: 
-
 phsicoAutomation.jar
+
+
+
